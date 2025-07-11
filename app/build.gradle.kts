@@ -12,7 +12,7 @@ android {
     defaultConfig {
         applicationId = "org.gradle.samples"
         namespace = "org.gradle.samples"
-        minSdk = 16
+        minSdk = 25
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
