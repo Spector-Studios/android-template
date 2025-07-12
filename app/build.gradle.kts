@@ -9,6 +9,7 @@ repositories {
 
 android {
     compileSdk = 30
+    ndkVersion = "27.1.12297006"
     defaultConfig {
         applicationId = "org.gradle.samples"
         namespace = "org.gradle.samples"
@@ -25,12 +26,19 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
+
+    sourceSets["main"].jniLibs.srcDirs(
+        project(":rustlib").layout.buildDirectory.dir("release/jniLibs").get().asFile
+    )
+}
+
+afterEvaluate {
+    tasks.named("preBuild").configure {
+        dependsOn(":rustlib:buildRustLibsRelease")
+    }
 }
 
 dependencies {
-    implementation(fileTree("libs") {
-        include("lib*.so")
-    })
     implementation("androidx.appcompat:appcompat:1.2.0")
     implementation("com.google.android.material:material:1.2.0")
     implementation("androidx.constraintlayout:constraintlayout:2.0.4")

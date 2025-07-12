@@ -108,3 +108,6 @@ google-services.json
 
 # Android Profiling
 *.hprof
+
+# Rust Cargo build cache
+**/target

@@ -8,4 +8,5 @@ pluginManagement {
 
 rootProject.name = "my-app"
 
+include(":rustlib")
 include(":app")
